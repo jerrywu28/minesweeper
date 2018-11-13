@@ -3,7 +3,7 @@
   flex-direction: column;
   text-align: center;
   background-color: rgb(215, 215, 215);
-  border: 1px solid black;
+  border: 1px solid rgb(150, 150, 150);
   height: 250px;
   width: 200px;
   margin: 0 auto;
@@ -13,16 +13,10 @@
   #status-bar {
     flex: 1;
     display: flex;
+    align-items: center;
     flex-direction: row;
-    margin: 0 auto;
+    margin: 0 auto 3vh;
   }
-
-    #restart {
-      flex: 1;
-      height: 35px;
-      width: 35px;
-      margin: 25px;
-    }
 
   #game-board {
     flex: 3;

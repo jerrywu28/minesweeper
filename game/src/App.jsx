@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Gameboard from './Gameboard.jsx';
 import Timer from './Timer.jsx';
+import Restart from './Restart.jsx';
 import Minesleft from './Minesleft.jsx';
 import './Styles/App.css';
 
@@ -93,7 +94,7 @@ class App extends Component {
       <div className="App">
         <div id="status-bar">
           <Timer id="timer" />
-          <button id="restart">8)</button>
+          <Restart />
           <Minesleft id="mines-left" remaining={this.state.remaining} />
         </div>
         <div id="game-board">
