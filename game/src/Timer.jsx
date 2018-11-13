@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Styles/Timer.css';
 
+
 class Timer extends Component {
   constructor(props) {
     super(props);
@@ -12,10 +13,14 @@ class Timer extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    let startInterval;
     if (nextProps.gameStarted) {
       let currentTime = Date.now();
       this.setState({startTime: currentTime})
-      setInterval(this.timeSince, 1000);
+      startInterval = setInterval(this.timeSince, 1000);
+    } else {
+      console.log('here!');
+      clearInterval(startInterval);;
     }
   }
 

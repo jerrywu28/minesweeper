@@ -10,11 +10,14 @@ class Squares extends Component {
   }
 
   clickSquare(e) {
-    if (this.props.gameStarted) {
+    if (this.props.gameStarted && !this.props.gameOver) {
       if (e.target.value !== '0') {
         e.target.innerText = e.target.value;
       }
       e.target.classList.add('left-clicked');
+      if (e.target.value === 'M') {
+        this.props.endGame();
+      }
     }
   }
 

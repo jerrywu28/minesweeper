@@ -12,9 +12,11 @@ class App extends Component {
       board: [],
       remaining: 10,
       gameStarted: false,
-      restarted: false
+      restarted: false,
+      gameOver: false
     }
     this.fillBoard = this.fillBoard.bind(this);
+    this.endGame = this.endGame.bind(this);
   }
 
   componentDidMount() {
@@ -109,16 +111,22 @@ class App extends Component {
     });
   }
 
+  endGame() {
+    this.setState({
+      gameStarted: false,
+      gameOver: true});
+  }
+
   render() {
     return (
       <div className="App">
         <div id="status-bar">
-          <Timer id="timer" gameStarted={this.state.gameStarted}/>
-          <Restart fillBoard={this.fillBoard}/>
+          <Timer id="timer" gameStarted={this.state.gameStarted} gameOver={this.state.gameOver}/>
+          <Restart fillBoard={this.fillBoard} gameStarted={this.state.gameStarted} restarted={this.state.restarted} gameOver={this.state.gameOver}/>
           <Minesleft id="mines-left" remaining={this.state.remaining} />
         </div>
         <div id="game-board">
-          <Gameboard board={this.state.board} gameStarted={this.state.gameStarted} restarted={this.state.restarted}/>
+          <Gameboard board={this.state.board} gameStarted={this.state.gameStarted} restarted={this.state.restarted} endGame={this.endGame} gameOver={this.state.gameOver}/>
         </div>
       </div>
     );
