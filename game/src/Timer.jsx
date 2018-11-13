@@ -5,21 +5,28 @@ class Timer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      startTime: Date.now(),
+      startTime: 0,
       timer: 0
     }
     this.timeSince = this.timeSince.bind(this);
   }
 
-  componentDidMount() {
-    setInterval(this.timeSince, 1000)
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.gameStarted) {
+      let currentTime = Date.now();
+      this.setState({startTime: currentTime})
+      setInterval(this.timeSince, 1000);
+    }
   }
 
   timeSince() {
-    const { startTime } = this.state;
+    let { startTime } = this.state;
     const currentTime = Date.now();
     const updateTimer = Math.floor((currentTime - startTime) / 1000)
-    this.setState({timer: updateTimer});
+    this.setState({
+      startTime: startTime,
+      timer: updateTimer
+    });
   }
 
   render() {

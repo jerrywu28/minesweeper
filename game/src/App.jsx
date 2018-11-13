@@ -10,23 +10,39 @@ class App extends Component {
     super(props);
     this.state = {
       board: [],
-      remaining: 10
+      remaining: 10,
+      gameStarted: false,
+      restarted: false
     }
+    this.fillBoard = this.fillBoard.bind(this);
   }
 
   componentDidMount() {
-    this.makeBoard();
+    this.makeBoard('new');
     document.oncontextmenu = (e) => e.preventDefault();
   }
 
-  makeBoard() {
+  makeBoard(newOrRestart) {
     const { board } = this.state;
-    
     //Generates 8x8 board with all 0s
     for (let i = 0; i < 8; i++) {
       let row = Array(8).fill(0);
       board.push(row);
     }
+    if (newOrRestart === 'new') {
+      this.setState({board: board});
+    } else {
+      return board;
+    }
+  }
+
+  fillBoard() {
+    let { board, gameStarted } = this.state;
+
+    if (gameStarted) {
+      this.makeBoard('restart');
+    }
+    
     //Creates 10 random, unique mines
     const mineLocations = [];
     while (mineLocations.length < 10) {
@@ -85,21 +101,24 @@ class App extends Component {
         }
       });
     });
-
     console.table(board);
-    this.setState({board: board});
+    this.setState({
+      board: board,
+      gameStarted: true,
+      restarted: true,
+    });
   }
 
   render() {
     return (
       <div className="App">
         <div id="status-bar">
-          <Timer id="timer" />
-          <Restart />
+          <Timer id="timer" gameStarted={this.state.gameStarted}/>
+          <Restart fillBoard={this.fillBoard}/>
           <Minesleft id="mines-left" remaining={this.state.remaining} />
         </div>
         <div id="game-board">
-          <Gameboard board={this.state.board} />
+          <Gameboard board={this.state.board} gameStarted={this.state.gameStarted} restarted={this.state.restarted}/>
         </div>
       </div>
     );

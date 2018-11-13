@@ -1,26 +1,47 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './Styles/Squares.css';
 
-const Squares = props => {
-
-  const clickSquare = e => {
-    if (e.target.value !== '0') {
-      e.target.innerText = e.target.value;
+class Squares extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      rightClick: 0
     }
-    e.target.classList.add('left-clicked');
   }
 
-  const rightClick = e => {
-    console.log(e.target.classList, e.target.value);
+  clickSquare(e) {
+    if (this.props.gameStarted) {
+      if (e.target.value !== '0') {
+        e.target.innerText = e.target.value;
+      }
+      e.target.classList.add('left-clicked');
+    }
   }
 
-  return (
-    <div>
-      {props.row.map((col, colIndex) => {
-        return <button key={colIndex} index={colIndex} value={col} onClick={e => clickSquare(e)} onContextMenu={e => rightClick(e)}></button>
-      })}
-    </div>
-  )
+  rightClick(e) {
+    if (this.props.gameStarted) {
+      e.target.classList.add('right-clicked-flag');
+      let { rightClick } = this.state;
+      if (rightClick === 0) {
+        rightClick = 1;
+      } else if (rightClick === 1) {
+        rightClick = 2;
+      } else {
+        rightClick = 0;
+      }
+      this.setState({rightClick: rightClick});
+    }
+  }
+
+  render() {
+    return (
+      <div>
+        {this.props.row.map((col, colIndex) => {
+          return <button key={colIndex} index={colIndex} value={col} onClick={e => this.clickSquare(e)} onContextMenu={e => this.rightClick(e)}></button>
+        })}
+      </div>
+    )
+  }
 }
 
 export default Squares;

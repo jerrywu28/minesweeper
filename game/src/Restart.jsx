@@ -3,7 +3,7 @@ import './Styles/Restart.css';
 
 const Restart = props => (
   <div>
-    <button id="restart"></button>
+    <button id="restart" onClick={props.fillBoard}></button>
   </div>
 )
 
