@@ -1,7 +1,11 @@
 import React from 'react';
 
 const BoardRow = props => (
-  props.row
+  <div>
+    {props.row.map((col, colIndex) => {
+      return <button key={colIndex} index={colIndex}>{col}</button>
+    })}
+  </div>
 )
 
 export default BoardRow;
