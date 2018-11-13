@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Styles/Timer.css';
 
 class Timer extends Component {
   constructor(props) {
@@ -23,7 +24,7 @@ class Timer extends Component {
 
   render() {
     return (
-      <div>{this.state.timer}</div>
+      <div id="timer-box">{this.state.timer}</div>
     )
   }
 }

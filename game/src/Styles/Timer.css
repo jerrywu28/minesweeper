@@ -1,0 +1,7 @@
+#timer-box {
+  flex: 1;
+  background-color: black;
+  color: red;
+  height: 20px;
+  width: 50px;
+}

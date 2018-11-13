@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Gameboard from './Gameboard.jsx';
 import Timer from './Timer.jsx';
+import Minesleft from './Minesleft.jsx';
 import './Styles/App.css';
 
 class App extends Component {
@@ -8,6 +9,7 @@ class App extends Component {
     super(props);
     this.state = {
       board: [],
+      remaining: 10
     }
   }
 
@@ -89,8 +91,14 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Timer /><button id="restart">8)</button>
-        <Gameboard board={this.state.board} />
+        <div id="status-bar">
+          <Timer id="timer" />
+          <button id="restart">8)</button>
+          <Minesleft id="mines-left" remaining={this.state.remaining} />
+        </div>
+        <div id="game-board">
+          <Gameboard board={this.state.board} />
+        </div>
       </div>
     );
   }
