@@ -16,6 +16,7 @@ class App extends Component {
 
   componentDidMount() {
     this.makeBoard();
+    document.oncontextmenu = (e) => e.preventDefault();
   }
 
   makeBoard() {
