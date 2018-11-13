@@ -1,0 +1,10 @@
+.App {
+  text-align: center;
+}
+
+#restart {
+  background-image: url("/smiley.jpg");
+  height: 50px;
+  width: 50px;
+  margin: 25px;
+}

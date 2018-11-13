@@ -1,10 +1,10 @@
 import React from 'react';
-import BoardRow from './BoardRow.js';
+import Squares from './Squares.jsx';
 
 const Gameboard = props => (
   <div>
     {props.board.map((row, rowIndex) => {
-      return <BoardRow key={rowIndex} row={row} rowIndex={rowIndex}>row</BoardRow>
+      return <Squares key={rowIndex} row={row} rowIndex={rowIndex}>row</Squares>
     })}
   </div>
 )

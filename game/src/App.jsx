@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Gameboard from './Gameboard.js';
-import './App.css';
+import Gameboard from './Gameboard.jsx';
+import './Styles/App.css';
 
 class App extends Component {
   constructor(props) {
@@ -50,7 +50,6 @@ class App extends Component {
           //Checks previous row
           if (previousRow) {
             if (previousCol) {
-              console.log(board[previousRow][previousCol]);
               if (board[previousRow][previousCol] === 'M') count += 1;
             }
             if (nextCol) {
@@ -95,6 +94,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <button id="restart"></button>
         <Gameboard board={this.state.board} />
       </div>
     );
