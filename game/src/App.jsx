@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Gameboard from './Gameboard.jsx';
+import Timer from './Timer.jsx';
 import './Styles/App.css';
 
 class App extends Component {
@@ -88,7 +89,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <button id="restart">8)</button>
+        <Timer /><button id="restart">8)</button>
         <Gameboard board={this.state.board} />
       </div>
     );
