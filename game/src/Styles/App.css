@@ -1,10 +1,14 @@
 .App {
   text-align: center;
+  background-color: rgb(245, 245, 245);
+  border: 1px solid black;
+  height: 350px;
+  width: 300px;
+  margin: 0 auto;
 }
 
 #restart {
-  background-image: url("/smiley.jpg");
-  height: 50px;
-  width: 50px;
+  height: 35px;
+  width: 35px;
   margin: 25px;
 }

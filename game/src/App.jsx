@@ -23,13 +23,13 @@ class App extends Component {
       board.push(row);
     }
     //Creates 10 random, unique mines
-    const mineLocations = [8, 9, 16, 24, 32, 40, 48, 43, 42, 60];
-    // while (mineLocations.length < 10) {
-    //   let mine = Math.floor(Math.random() * 64);
-    //   if (mineLocations.includes(mine) === false) {
-    //     mineLocations.push(mine);
-    //   }
-    // }
+    const mineLocations = [];
+    while (mineLocations.length < 10) {
+      let mine = Math.floor(Math.random() * 64);
+      if (mineLocations.includes(mine) === false) {
+        mineLocations.push(mine);
+      }
+    }
     //Places mines into gameboard
     mineLocations.forEach(mine => {
       let row = Math.floor(mine / 8);
@@ -46,41 +46,35 @@ class App extends Component {
           let previousCol = (colIndex - 1 >= 0) ? colIndex - 1 : null;
           let nextCol = (colIndex + 1 <= 7) ? colIndex + 1 : null;
           let count = 0;
-
           //Checks previous row
-          if (previousRow) {
-            if (previousCol) {
+          if (previousRow !== null) {
+            if (previousCol !== null) {
               if (board[previousRow][previousCol] === 'M') count += 1;
             }
-            if (nextCol) {
-              if (nextCol) {
-                if (board[previousRow][nextCol] === 'M') count += 1;
-              }
+            if (nextCol !== null) {
+              if (board[previousRow][nextCol] === 'M') count += 1;
             }
             if (board[previousRow][colIndex] === 'M') count += 1;
           }
           //Checks current row
-          if (previousCol) {
+          if (previousCol !== null) {
             if (board[rowIndex][previousCol] === 'M') count += 1;
           }
-          if (nextCol) {
-            if (nextCol) {
-              if (board[rowIndex][nextCol] === 'M') count += 1;
-            }
+          if (nextCol !== null) {
+            if (board[rowIndex][nextCol] === 'M') count += 1;
           }
           //Checks next row
-          if (nextRow) {
-            if (previousCol) {
-              if (board[nextRow][previousCol] === 'M') count += 1;
-            }
-            if (nextCol) {
-              if (nextCol) {
-                if (board[nextRow][nextCol] === 'M') count += 1;
+          if (nextRow !== null) {
+            if (previousCol !== null) {
+              if (board[nextRow][previousCol] === 'M') {
+                count += 1;
               }
+            }
+            if (nextCol !== null) {
+              if (board[nextRow][nextCol] === 'M') count += 1;
             }
             if (board[nextRow][colIndex] === 'M') count += 1;
           }
-
           //Assigns # of adjacent mines to square
           board[rowIndex][colIndex] = count;
         }
@@ -94,7 +88,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <button id="restart"></button>
+        <button id="restart">8)</button>
         <Gameboard board={this.state.board} />
       </div>
     );
